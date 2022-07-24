@@ -74,7 +74,7 @@ NSStatusItem *_statusItem;
 		if (fontSize == 0) {
 			size = 14;
 		}
-		attributes[NSFontAttributeName] = [NSFont fontWithName: @"Cascadia Mono PL" size:size];
+		attributes[NSFontAttributeName] = [NSFont fontWithName: @"Cascadia Mono" size:size];
 		item.attributedTitle =
 			[[NSMutableAttributedString alloc] initWithString:text
 			 attributes:attributes];
