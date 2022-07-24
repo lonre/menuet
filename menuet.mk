@@ -39,7 +39,7 @@ SOURCEDIRS = $(abspath $(dir $(MAKEFILE_LIST)))
 SOURCES := $(shell find $(SOURCEDIRS) $(LIBDIRS) -name '*.go' -o -name '*.m' -o -name '*.h' -o -name '*.c' -o -name '*.mk' -o -name Makefile)
 
 $(BINARY): $(SOURCES)
-	go build -o $(BINARY)
+	go build -ldflags "-s -w" -o $(BINARY)
 
 ZIPFILE = $(ESCAPED_APP).zip
 
@@ -48,6 +48,10 @@ $(ZIPFILE): sign $(BINARY) $(PLIST)
 
 clean:
 	rm -f $(BINARY) $(PLIST) $(ZIPFILE)
+
+.PHONY: gen
+gen:
+	zip -r $(ZIPFILE) $(ESCAPED_APP).app
 
 .PHONY: zip
 zip: $(ZIPFILE)
